@@ -1,8 +1,20 @@
+# - hosts: localhost
+#   connection: local
+#   become: true # Becoming sudo user here
+#   tasks:
+#   - name: 'Uninstall nginx'
+#     command: apt purge nginx nginx-common nginx-core -y
+#     register: purge_output
+#     changed_when: "'The following packages will be REMOVED' in purge_output.stdout"
+
 - hosts: localhost
-  connection: local
-  become: true # Becoming sudo user here
   tasks:
-  - name: 'Uninstall nginx'
-    command: apt purge nginx nginx-common nginx-core -y
-    register: purge_output
-    changed_when: "'The following packages will be REMOVED' in purge_output.stdout"
+    - name: "Uninstall NginX"
+      apt:
+        name: nginx
+        state: absent
+
+    - name: "Stop Nginx Services"
+      service:
+        name: nginx
+        state: stopped
