@@ -6,4 +6,4 @@ all:
         34.242.222.207:
       vars:
         ansible_user: ubuntu
-        ansible_ssh_private_key_file: '~/Week9/ansible/playbooks-exercise/inventory_tut
+        ansible_ssh_private_key_file: '~/Week9/ansible/inventory_tut/inventory_tut
