@@ -1,0 +1,7 @@
+- hosts: localhost
+  connection: local
+  become: true # Becoming sudo user here
+  tasks:
+  - name: 'Uninstall nginx'
+    command: 'sudo apt autoremove nginx -y'
+      update_cache: true
