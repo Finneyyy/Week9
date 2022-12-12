@@ -4,5 +4,5 @@
   tasks:
   - name: 'Uninstall nginx'
     apt:
-      command: 'sudo apt autoremove nginx -y'
+      command: 'sudo systemctl stop nginx && sudo apt autoremove nginx -y'
       update_cache: true
