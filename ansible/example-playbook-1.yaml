@@ -9,4 +9,4 @@
 
   - name: 'Printing output variable here!'
     debug:
-      msg: {{ nginx_info }}
+      msg: "{{ nginx_info }}"
