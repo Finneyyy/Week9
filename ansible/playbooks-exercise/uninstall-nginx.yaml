@@ -3,5 +3,6 @@
   become: true # Becoming sudo user here
   tasks:
   - name: 'Uninstall nginx'
-    command: 'sudo systemctl stop nginx && sudo apt autoremove nginx -y'
-    update_cache: true
+    apt:
+      name: nginx
+      autoremove: yes
