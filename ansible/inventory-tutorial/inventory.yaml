@@ -6,4 +6,4 @@ all:
         ec2-34-247-165-203.eu-west-1.compute.amazonaws.com:
       vars:
         ansible_user: ubuntu
-        ansible_ssh_private_key_file: '~/Week9/ansible/inventory_tut/inventory_tut
+        ansible_ssh_private_key_file: 'inventory_tut
