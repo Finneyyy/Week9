@@ -3,6 +3,6 @@
   become: true # Becoming sudo user here
   tasks:
   - name: 'Uninstall nginx'
-    command: apt purge nginx nginx-common nginx-core
+    command: apt purge nginx nginx-common nginx-core -y
     register: purge_output
     changed_when: "'The following packages will be REMOVED' in purge_output.stdout"
