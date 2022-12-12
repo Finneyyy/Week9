@@ -5,4 +5,5 @@
   - name: 'Uninstall nginx'
     apt:
       name: nginx
+      status: stop
       autoremove: yes
