@@ -1,0 +1,12 @@
+- hosts: localhost
+  tasks:
+  - name: 'Install nginx'
+    apt:
+      name: nginx
+      state: present
+      update_cache: true
+    register: nginx_info
+
+  - name: 'Printing output variable here!'
+    debug:
+      msg: {{ nginx_info }}
