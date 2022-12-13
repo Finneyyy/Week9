@@ -5,4 +5,6 @@
     community.docker.docker_container:
       name: testcontainer
       state: started
-      restart: yes 
+      restart: yes
+      port:
+        - 8090:8090
