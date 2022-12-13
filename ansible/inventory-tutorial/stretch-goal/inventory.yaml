@@ -1,9 +1,14 @@
 all:
   hosts:
   children:
-    test:
+    docker-manager:
       hosts:
         ip-172-31-33-114.eu-west-1.compute.internal:
+      vars:
+        ansible_user: ubuntu
+        ansible_ssh_private_key_file: '/home/ubuntu/Week9/ansible/inventory-tutorial/inventory_tut'
+    worker:
+      hosts:
         ip-172-31-43-55.eu-west-1.compute.internal:
       vars:
         ansible_user: ubuntu
