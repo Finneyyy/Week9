@@ -3,6 +3,6 @@
     host_ip: "{{ ansible_default_ipv4.address }}"
   tasks:
   - name: "Get host ip"
-      copy: 
-        content: "{{ host_ip }}"
-        dest: "host-ip"
+    copy: 
+      content: "{{ host_ip }}"
+      dest: "host-ip"
