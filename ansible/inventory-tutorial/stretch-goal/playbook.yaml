@@ -29,3 +29,15 @@
         name: docker-ce
         state: latest
         update_cache: true
+      
+    - name: "Check if swarm has been initialised"
+      shell: docker node ls
+      register: status_swarm
+      ignore_errors: true
+
+    - name: "Initialise Docker Swarm"
+      docker_swarm:           # uses the community.docker.docker_swarm module
+        state: present
+      when: status_swarm.rc != 0
+      run_once: true
+
