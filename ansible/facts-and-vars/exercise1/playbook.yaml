@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars:
+    git_repo: https://github.com/hakluke/how-to-exit-vim.git
+  tasks:
+    - name: "Clone down best repo"
+      git:
+        repo: "{{ git_repo }}"
+        dest: ~/best-repo/
+        clone: yes
+        update: yes
