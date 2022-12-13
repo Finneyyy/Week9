@@ -1,2 +1,24 @@
 ---
-# tasks file for webserver
+- name: "download, install git/nginx using apt"
+  apt:
+    pkg:
+    - nginx
+    - git
+    state: latest
+    update_cache: true
+
+- name: "make sure service started"
+  service:
+    name: nginx
+    state: started
+
+- name: "update website from git repo"
+  git:
+    repo: "{{ git_repository }}"
+    dest: "{{ install_directory }}"
+
+- name: "put nginx.conf file on to the remote repo"
+  template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+  notify: 'reload nginx'
