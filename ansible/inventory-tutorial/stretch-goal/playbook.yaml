@@ -34,15 +34,42 @@
       pip:
         name: docker
       
-    - name: "Check if swarm has been initialised"
-      shell: docker node ls
-      register: status_swarm
-      ignore_errors: true
+    - name: "Get docker info"
+      shell: docker info
+      register: docker_info
+      changed_when: False
 
-    - name: "Initialise Docker Swarm"
-      docker_swarm:           # uses the community.docker.docker_swarm module
-        state: present
-        run_once: true
+- hosts: localhost
+  become: true
+  tasks: 
+    - name: "Create swarm manager"
+      shell: docker swarm init --advertise-addr {{ ansible_default_ipv4.address }}
+      when: "docker_info.stdout.find('Swarm: inactive') > 0"
 
-    - name: "Get Manager join token"
+    - name: "Get manager ip"
+      copy: 
+        content: "{{ ansible_default_ipv4.address }}"
+        dest: "/tmp/manager-ip"
 
+    - name: "Get manager token"
+      shell: docker swarm join-token -q manager
+      register: manager_token
+    - copy:
+        content: "{{ manager_token.stdout }}"
+        dest: "/tmp/manager-token"
+    
+    - name: "Get worker token"
+      shell: docker swarm join-token -q worker
+      register: worker_token
+    - copy:
+        content: "{{ worker_token.stdout }}"
+        dest: "/tmp/worker-token" 
+
+- hosts: all
+  become: true
+  tasks: 
+    - name: "Join le swarm"
+      shell: "docker swarm join --token {{ lookup('file', '/tmp/manager-token') }} {{ lookup('file', '/tmp/manager-ip') }}:2377" # docker swarm uses 2377 for cluster management
+      when: "docker_info.stdout.find('Swarm: inactive') > 0"
+      retries: 5
+      delay: 5
