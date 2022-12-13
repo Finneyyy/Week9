@@ -6,6 +6,6 @@
     - name: "Clone down best repo"
       git:
         repo: "{{ git_repo }}"
-        dest: ~/best-repo/
+        dest: "./best-repo/"
         clone: yes
         update: yes
