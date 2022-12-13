@@ -1,8 +1,8 @@
-- hosts: all
+- hosts: localhost
   vars:
-    host_ip: "{{ ansible_default_ipv4 }}"
+    host_ip: "{{ ansible_default_ipv4.address }}"
   tasks:
   - name: "Get host ip"
       copy: 
-        content: "{{ ansible_default_ipv4.address }}"
+        content: "{{ host_ip }}"
         dest: "host-ip"
