@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
   tasks:
   - name: "Start a container"
     community.docker.docker_container:
