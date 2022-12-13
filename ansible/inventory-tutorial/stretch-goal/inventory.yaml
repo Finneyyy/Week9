@@ -1,7 +1,7 @@
 all:
   hosts:
   children:
-    docker-manager:
+    manager:
       hosts:
         ip-172-31-33-114.eu-west-1.compute.internal:
       vars:

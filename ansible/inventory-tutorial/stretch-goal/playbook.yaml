@@ -39,7 +39,7 @@
       register: docker_info
       changed_when: False
 
-- hosts: docker-manager
+- hosts: manager
   become: true
   tasks: 
     - name: "Create swarm manager"
