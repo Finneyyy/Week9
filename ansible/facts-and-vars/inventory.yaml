@@ -1,7 +1,10 @@
 all:
   hosts:
-    ip-172-31-33-114.eu-west-1.compute.internal:
-    ip-172-31-43-55.eu-west-1.compute.internal:
-  vars:
-    ansible_user: ubuntu
-    ansible_ssh_private_key_file: 'inventory_tut'
+  children:
+    test:
+      hosts:
+        ip-172-31-33-114.eu-west-1.compute.internal:
+        ip-172-31-43-55.eu-west-1.compute.internal:
+      vars:
+        ansible_user: ubuntu
+        ansible_ssh_private_key_file: 'inventory_tut'
