@@ -49,21 +49,21 @@
     - name: "Get manager ip"
       copy: 
         content: "{{ ansible_default_ipv4.address }}"
-        dest: "manager-ip"
+        dest: "/tmp/manager-ip"
 
     - name: "Get manager token"
       shell: docker swarm join-token -q manager
       register: manager_token
     - copy:
         content: "{{ manager_token.stdout }}"
-        dest: "manager-token"
+        dest: "/tmp/manager-token"
     
     - name: "Get worker token"
       shell: docker swarm join-token -q worker
       register: worker_token
     - copy:
         content: "{{ worker_token.stdout }}"
-        dest: "worker-token" 
+        dest: "/tmp/worker-token" 
 
 - hosts: all
   become: true
