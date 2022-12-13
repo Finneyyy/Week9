@@ -29,6 +29,10 @@
         name: docker-ce
         state: latest
         update_cache: true
+
+    - name: "Add docker python module"   # Need this for swarm
+      pip:
+        name: docker
       
     - name: "Check if swarm has been initialised"
       shell: docker node ls
@@ -38,6 +42,7 @@
     - name: "Initialise Docker Swarm"
       docker_swarm:           # uses the community.docker.docker_swarm module
         state: present
-      when: status_swarm.rc != 0
-      run_once: true
+        run_once: true
+
+    - name: "Get Manager join token"
 
