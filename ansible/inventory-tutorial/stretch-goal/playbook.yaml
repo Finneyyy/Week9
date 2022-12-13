@@ -1,0 +1,31 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: "Install required system packages"
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+    
+    - name: "Add Docker GPG apt key"
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    
+    - name: "Add Docker Repo"
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: "Update apt & install docker-ce"
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
