@@ -9,7 +9,6 @@
       ports:
         - 80:80
 
-
   - name: "Restart docker container"
     community.docker.docker_container:
       name: testcontainer
