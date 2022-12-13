@@ -1,4 +1,5 @@
 - hosts: all
+  become: true
   tasks:
   - name: "Start a container"
     community.docker.docker_container:
