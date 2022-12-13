@@ -4,8 +4,5 @@
   - name: "Restart docker container"
     community.docker.docker_container:
       name: testcontainer
-      image: nginx
       state: started
       restart: yes 
-      ports:
-        - 80:80
