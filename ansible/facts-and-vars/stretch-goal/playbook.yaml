@@ -1,6 +1,4 @@
- - hosts: localhost
-  vars:
-    host_os: "{{ ansible_distribution }}"
+- hosts: localhost
   tasks:
   - name: "Start a container"
     community.docker.docker_container:
