@@ -1,5 +1,5 @@
 all:
-  hosts:
+  hosts: localhost
   children:
     test:
       hosts:
