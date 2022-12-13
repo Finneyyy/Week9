@@ -4,5 +4,5 @@
   tasks:
   - name: "Get OS when os is ubuntu"
     debug: msg="{{ host_os }}"
-    when: "host_os == Ubuntu"
+    when: "msg == Ubuntu"
     
