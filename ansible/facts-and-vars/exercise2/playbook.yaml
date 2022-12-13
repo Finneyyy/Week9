@@ -2,7 +2,7 @@
   vars:
     host_ip: "{{ ansible_default_ipv4 }}"
   tasks:
-    name: "Get host ip"
+  - name: "Get host ip"
       copy: 
         content: "{{ ansible_default_ipv4.address }}"
         dest: "host-ip"
