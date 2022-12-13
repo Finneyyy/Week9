@@ -1,0 +1,20 @@
+ - hosts: localhost
+  vars:
+    host_os: "{{ ansible_distribution }}"
+  tasks:
+  - name: "Start a container"
+    community.docker.docker_container:
+      name: testcontainer
+      image: nginx
+      ports:
+        - 80:80
+
+
+  - name: "Restart docker container"
+    community.docker.docker_container:
+      name: testcontainer
+      image: nginx
+      state: started
+      restart: yes 
+      ports:
+        - 80:80
